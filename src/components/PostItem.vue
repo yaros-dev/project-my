@@ -19,7 +19,7 @@ export default {
         Decription:<strong>{{ post.body }}</strong>
       </div>
       <div class="btn-posts">
-        <Button>Delete</Button>
+        <Button @click="$emit('remove', post)">Delete</Button>
         <Button>Edit</Button>
       </div>
     </div>

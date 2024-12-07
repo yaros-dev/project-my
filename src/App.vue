@@ -9,7 +9,7 @@ export default {
   },
   data() {
     return {
-      data: [
+      posts: [
         {
           id: 1,
           title: "javaScript",
@@ -25,16 +25,6 @@ export default {
           title: "Java",
           body: " ntium quis  tiae por odio et labore et velit aut",
         },
-        {
-          id: 4,
-          title: "Jambo",
-          body: " ntium quis  tiae por odio et labore et velit aut",
-        },
-        {
-          id: 5,
-          title: "Google",
-          body: " ntium quis  tiae por odio et labore et velit aut",
-        },
       ],
       error: "",
     };
@@ -45,7 +35,10 @@ export default {
         return;
       }
 
-      this.data.unshift(post);
+      this.posts.unshift(post);
+    },
+    removePost(post) {
+      this.posts = this.posts.filter((p) => p.id !== post.id);
     },
   },
 };
@@ -55,7 +48,7 @@ export default {
   <div class="app">
     <div class="error">{{ error }}</div>
     <PostForm @create="createPost" />
-    <PostList :posts="data" />
+    <PostList :posts="posts" @remove="removePost" />
   </div>
 </template>
 
