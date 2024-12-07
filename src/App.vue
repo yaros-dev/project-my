@@ -1,6 +1,7 @@
 <script>
 import PostForm from "./components/PostForm.vue";
 import PostList from "./components/PostList.vue";
+import Dialog from "./components/UI/Dialog.vue";
 
 export default {
   components: {
@@ -26,7 +27,7 @@ export default {
           body: " ntium quis  tiae por odio et labore et velit aut",
         },
       ],
-      error: "",
+      dialogVisible: false,
     };
   },
   methods: {
@@ -36,9 +37,13 @@ export default {
       }
 
       this.posts.unshift(post);
+      this.dialogVisible = false;
     },
     removePost(post) {
       this.posts = this.posts.filter((p) => p.id !== post.id);
+    },
+    showDialog() {
+      this.dialogVisible = true;
     },
   },
 };
@@ -46,8 +51,10 @@ export default {
 
 <template>
   <div class="app">
-    <div class="error">{{ error }}</div>
-    <PostForm @create="createPost" />
+    <Button @click="showDialog">Create new post</Button>
+    <Dialog v-model:show="dialogVisible">
+      <PostForm @create="createPost" />
+    </Dialog>
     <PostList :posts="posts" @remove="removePost" />
   </div>
 </template>

@@ -3,9 +3,6 @@ export default {
   props: {
     post: { type: Object, required: true },
   },
-  methods: {
-    deletePost(id) {},
-  },
 };
 </script>
 

@@ -34,7 +34,6 @@ export default {
 
 <style>
 .myform {
-  margin-bottom: 20px;
   font-size: 20px;
   max-width: 500px;
 }
