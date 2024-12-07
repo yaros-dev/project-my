@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import PostForm from "./components/PostForm.vue";
 import PostList from "./components/PostList.vue";
 import Dialog from "./components/UI/Dialog.vue";
@@ -10,24 +11,9 @@ export default {
   },
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          title: "javaScript",
-          body: "quia et suscipit\nsuscipit ",
-        },
-        {
-          id: 2,
-          title: "Pascal",
-          body: "est rerum t  neque nisi nulla",
-        },
-        {
-          id: 3,
-          title: "Java",
-          body: " ntium quis  tiae por odio et labore et velit aut",
-        },
-      ],
+      posts: [],
       dialogVisible: false,
+      loading: false,
     };
   },
   methods: {
@@ -45,6 +31,22 @@ export default {
     showDialog() {
       this.dialogVisible = true;
     },
+    async fetchPosts() {
+      try {
+        this.loading = true;
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/posts?_limit=10"
+        );
+        this.posts = response.data;
+      } catch (error) {
+        alert("Error", error);
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+  mounted() {
+    this.fetchPosts();
   },
 };
 </script>
@@ -55,7 +57,8 @@ export default {
     <Dialog v-model:show="dialogVisible">
       <PostForm @create="createPost" />
     </Dialog>
-    <PostList :posts="posts" @remove="removePost" />
+    <PostList :posts="posts" @remove="removePost" v-if="!loading" />
+    <div v-else class="spinner"><Spinner /></div>
   </div>
 </template>
 
@@ -68,5 +71,11 @@ export default {
 
 .app {
   padding: 20px;
+}
+
+.spinner {
+  margin: 0 auto;
+  max-width: 100px;
+  height: 100px;
 }
 </style>

@@ -41,14 +41,14 @@ export default {
 
 .title {
   margin-bottom: 4px;
-  max-width: 150px;
+  max-width: 300px;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .decription {
   overflow: hidden;
-  max-width: 150px;
+  max-width: 300px;
   white-space: nowrap;
 }
 
