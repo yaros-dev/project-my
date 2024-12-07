@@ -1,10 +1,3 @@
-<template>
-  <div class="app">
-    <PostForm @create="createPost" />
-    <PostList :posts="data" />
-  </div>
-</template>
-
 <script>
 import PostForm from "./components/PostForm.vue";
 import PostList from "./components/PostList.vue";
@@ -43,15 +36,28 @@ export default {
           body: " ntium quis  tiae por odio et labore et velit aut",
         },
       ],
+      error: "",
     };
   },
   methods: {
     createPost(post) {
-      this.data.push(post);
+      if (!post.title || !post.body) {
+        return;
+      }
+
+      this.data.unshift(post);
     },
   },
 };
 </script>
+
+<template>
+  <div class="app">
+    <div class="error">{{ error }}</div>
+    <PostForm @create="createPost" />
+    <PostList :posts="data" />
+  </div>
+</template>
 
 <style>
 * {

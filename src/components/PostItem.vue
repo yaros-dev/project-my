@@ -1,20 +1,3 @@
-<template>
-  <div class="post">
-    <div>
-      <div>
-        Title:<strong>{{ post.title }}</strong>
-      </div>
-      <div>
-        Decription:<strong>{{ post.body }}</strong>
-      </div>
-      <div class="btn-posts">
-        <button class="btn">Delete❌</button>
-        <button class="btn">Edit🟨</button>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 export default {
   props: {
@@ -26,17 +9,54 @@ export default {
 };
 </script>
 
+<template>
+  <div class="post">
+    <div class="inner-post">
+      <div class="title">
+        Title:<strong>{{ post.title }}</strong>
+      </div>
+      <div class="decription">
+        Decription:<strong>{{ post.body }}</strong>
+      </div>
+      <div class="btn-posts">
+        <Button>Delete</Button>
+        <Button>Edit</Button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style scoped>
 .post {
-  border: 2px solid blueviolet;
-  margin-bottom: 3px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  margin-bottom: 8px;
   padding: 5px;
   max-width: 500px;
   transition: all 0.1s;
 }
+.inner-post {
+  padding: 10px;
+}
+
+.title {
+  margin-bottom: 4px;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.decription {
+  overflow: hidden;
+  max-width: 150px;
+  white-space: nowrap;
+}
 
 .post:hover {
-  border: 2px solid rgb(13, 245, 13);
+  border: 1px solid rgb(51, 82, 51);
 }
 
 .btn-posts {
@@ -44,12 +64,5 @@ export default {
   justify-content: flex-end;
   align-items: center;
   gap: 8px;
-}
-
-.btn {
-  background: #c1c4e0;
-  border: none;
-  padding: 4px;
-  border-radius: 4px;
 }
 </style>

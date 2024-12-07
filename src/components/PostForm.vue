@@ -1,17 +1,3 @@
-<template>
-  <form class="myform" @submit.prevent>
-    <h4>Створення поста</h4>
-    <input v-model="post.title" class="input" type="text" placeholder="Title" />
-    <input
-      v-model="post.body"
-      class="input"
-      type="text"
-      placeholder="Description"
-    />
-    <button @click="createPost" class="input">Create</button>
-  </form>
-</template>
-
 <script>
 export default {
   data() {
@@ -35,16 +21,44 @@ export default {
 };
 </script>
 
+<template>
+  <form class="myform" @submit.prevent>
+    <h4>Creating a post</h4>
+    <div class="fieds">
+      <input
+        v-model="post.title"
+        class="input"
+        type="text"
+        placeholder="Title"
+      />
+      <input
+        v-model="post.body"
+        class="input"
+        type="text"
+        placeholder="Description"
+      />
+      <Button @click="createPost" class="input">Create</Button>
+    </div>
+  </form>
+</template>
+
 <style scoped>
 .myform {
   margin-bottom: 20px;
   font-size: 20px;
+  max-width: 500px;
+}
+.fieds {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 }
 
 .input {
   width: 100%;
-  max-width: 200px;
-  padding: 10px 15px;
+  max-width: 150px;
+  padding: 5px 7px;
   font-size: 16px;
   font-family: Arial, sans-serif;
   color: #333;
@@ -53,7 +67,6 @@ export default {
   border-radius: 4px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
-  margin: 0 8px;
 }
 
 .input:focus {
@@ -77,12 +90,12 @@ input::placeholder {
 }
 
 h4 {
-  padding: 20px;
+  padding: 10px;
 }
 
 form {
-  padding: 10px;
-  border: 2px solid rgb(84, 4, 4);
+  padding: 12px;
+  border: 2px solid #ccc;
   border-radius: 8px;
 }
 </style>
